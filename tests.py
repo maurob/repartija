@@ -73,13 +73,25 @@ class Test(unittest.TestCase):
         r = uut.ganancia_individual()
         self.assertEqual(r['martin'], 150)
         self.assertEqual(r['mauro'], 0)
-
         # Sólo el gratuito trabaja y sobra plata
         uut.set_trabajo({'martin': 0, 'mauro': 1})
         r = uut.ganancia_individual()
         self.assertEqual(r[None], 50)
         self.assertEqual(r['mauro'], 0)
         self.assertEqual(r['martin'], 0)
+
+    def test_igual_ganancia(self):
+        """ El valor relativo de horas trabajada entre individuos debería compensar
+        la diferencia en los precios por hora de cada uno, de manera que obtengan
+        la misma ganancia """
+        uut = Repartija()
+        uut.set_precios_por_hora({'martin': 230, 'mauro': 170})
+        ratio = uut.precios_por_hora['martin'] / uut.precios_por_hora['mauro']
+        uut.set_trabajo({'martin': 1, 'mauro': ratio})
+        r = uut.ganancia_individual()
+        self.assertEqual(r['martin'], r['mauro'])
+
+      
 
 if __name__=='__main__':
     unittest.main()
