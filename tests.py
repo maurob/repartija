@@ -83,5 +83,3 @@ class Test(unittest.TestCase):
 
 if __name__=='__main__':
     unittest.main()
-#    suite = unittest.defaultTestLoader.loadTestsFromTestCase(Test)
-#    unittest.TextTestRunner().run(suite)
