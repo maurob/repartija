@@ -51,7 +51,7 @@ class Repartija:
         """ Es el precio que se va a cobrar """
         return float(self.precio_medio_por_hora() * self.total_de_horas_trabajadas())
     
-    def precio_deceado(self):
+    def precio_deseado(self):
         """ Es el precio que se pretende cobrar en función del precio horario de cada uno """
         return float(sum(self.horas_trabajadas[individuo] * precio_por_hora
                    for individuo, precio_por_hora in self.precios_por_hora.items()))
